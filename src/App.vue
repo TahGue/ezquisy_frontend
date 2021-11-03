@@ -6,12 +6,17 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import route from './route.js'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data:() => {
+  currentRoute:window.location.pathname
+  }, 
+  computed: {
+    ViewComponent(){
+      return route[this.currentRoute]
+    }
   }
 }
 </script>
