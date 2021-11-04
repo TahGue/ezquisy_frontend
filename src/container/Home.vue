@@ -2,12 +2,11 @@
   <div>
     <h1>{{ user.email }}</h1>
     <h1>{{ user.name }}</h1>
-    
-  <div v-for="category in categories" :key="category.id"> 
-    {{category.name}}
-   <img :src="category.image" alt=""> 
+    <div class='CategoryHome'>
+  <div v-for="category in categories" :key="category.id" style="padding:10px" > 
 
-
+   <CategoryItem :name="category.name" :image="category.image" :id="category.id" /> 
+  </div>
   </div>
 
   </div>
@@ -18,6 +17,7 @@
 import User from './../api/User';
 import { mapState } from 'vuex';
 import Category from "./../api/Category";
+import CategoryItem from "./../components/CategoryItem.vue"
 export default {
   data: () => {
     return {
@@ -25,6 +25,9 @@ export default {
       categories:{},
     };
   },
+   components: {
+     CategoryItem,
+    },
   computed: {
     ...mapState('user'),
   },
@@ -42,3 +45,13 @@ export default {
   methods: {},
 };
 </script>
+
+<style>
+.CategoryHome {
+  
+display: grid;
+grid-template-columns: repeat(4,2fr);
+padding: 0 2px;
+}
+
+</style>

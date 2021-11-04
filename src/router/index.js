@@ -13,6 +13,12 @@ const routes = [
     component: Home,
   },
   {
+    path: '/category',
+    name: 'category',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../container/Aboutus.vue'),
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
