@@ -76,6 +76,8 @@ export default {
           .then((response) => {
             if (response?.data && response?.data?.token) {
               localStorage.setItem('token', response.data.token);
+            
+            window.location.href="/about";
             }
           });
       }
