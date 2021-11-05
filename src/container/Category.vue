@@ -1,34 +1,35 @@
 <template>
-  <div>
-    <div class="CategoryHome">
-      <div
-        v-for="question in questions"
-        :key="question.id"
+    <div class="question-container">
+      <div  
         style="padding: 10px"
       >
-        <CategoryItem
-          :name="question.question"
-          :image="question.image"
-          :id="question.id"
+      <QuestionItem
+         :question="selectedQuestion"
         />
+        <div class='btns-container'>
+          <button v-if="selectedQuestion && selectedQuestion.id!==questions[questions.length-1].id" v-on:click="goNext()" class="next-btn">Next</button>
+          <button  v-if=" selectedQuestion && selectedQuestion.id!==questions[0].id" class="next-btn"  v-on:click="goPrevious()">Previous</button>
+          <button class="next-btn">See Result</button>
+        </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import Question from './../api/Question';
-import CategoryItem from './../components/CategoryItem.vue';
+import QuestionItem from './../components/QuestionItem';
+
 export default {
   data: () => {
     return {
       user: {},
-      questions: {},
+      questions: [],
+      selectedQuestion:{}
     };
   },
   components: {
-    CategoryItem,
+    QuestionItem,
   },
   computed: {
     ...mapState('user'),
@@ -37,16 +38,27 @@ export default {
     var self = this;
     return Question.getByCategory(this.$route.params.id).then(function (dt) {
       self.questions = dt;
+      self.selectedQuestion = dt.length > 0 ? dt[0]:{name:'no questions'};
     });
   },
-  methods: {},
+  methods: {
+    goNext(){
+     const currentIndex=this.questions.indexOf(this.selectedQuestion);
+     this.selectedQuestion = this.questions[currentIndex+1];
+    },
+      goPrevious(){
+     const currentIndex=this.questions.indexOf(this.selectedQuestion);
+     this.selectedQuestion = this.questions[currentIndex-1];
+    }
+  },
 };
 </script>
 
-<style>
-.CategoryHome {
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  padding: 0 2px;
-}
+<style scoped>
+.question-container{
+  width: 100%;
+   background: #f0f0f0;
+   border: 1px solid #333;
+   overflow: hidden;
+  }
 </style>
