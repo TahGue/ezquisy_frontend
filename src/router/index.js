@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../container/Home.vue';
+import Category from '../container/Category.vue';
 import Login from '../container/Login.vue';
 import Register from '../container/Register.vue';
 
@@ -15,8 +16,7 @@ const routes = [
   {
     path: '/category',
     name: 'category',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../container/Aboutus.vue'),
+    component: Category,
   },
   {
     path: '/about',
