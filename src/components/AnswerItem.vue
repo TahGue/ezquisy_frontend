@@ -1,51 +1,30 @@
 <template>
-<li>{{answer.text}}</li>
+  <li class="answer-li">{{ answer.text }}</li>
 </template>
 
 <script>
 export default {
   name: 'AnswerItem',
   props: {
-   answer:{}
-  }
-}
-
+    answer: {},
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.CategroyItem{
-
-    width: 100%;
+.answer-li {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #fff;
+  list-style: none;
+  background: #bbdefb;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
-.category-card{
-    
- border: 1px solid black;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 0px 4px #333;
-    padding: 10px;
-}
-.category-card img {
-
-    width: 100%;
-   
-    height: auto;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.answer-li:hover {
+  background: #00bcd4;
+  color: #fff;
 }
 </style>
-

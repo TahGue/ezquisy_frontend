@@ -20,7 +20,6 @@
 
 <script>
 import User from './../api/User';
-import { mapState } from 'vuex';
 import Category from './../api/Category';
 import CategoryItem from './../components/CategoryItem.vue';
 export default {
@@ -33,9 +32,7 @@ export default {
   components: {
     CategoryItem,
   },
-  computed: {
-    ...mapState('user'),
-  },
+  computed: {},
   created() {
     var self = this;
     return User.getCurrentUser().then(function (dt) {

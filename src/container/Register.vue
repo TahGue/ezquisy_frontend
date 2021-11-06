@@ -1,8 +1,7 @@
 <template>
-    <div>
+  <div>
     <h2>Login</h2>
     <form @submit.prevent="handleSubmit">
-
       <div class="form-group">
         <label for="name">NAME</label>
         <input
@@ -16,7 +15,7 @@
           name is required
         </div>
       </div>
-     
+
       <div class="form-group">
         <label for="email">E-mail</label>
         <input
@@ -45,52 +44,42 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" >
-          Register
-        </button>
-       
+        <button class="btn btn-primary">Register</button>
+
         <router-link to="/login" class="btn btn-link">Cancel</router-link>
       </div>
-
     </form>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
 import { url } from '../config/config';
 
 export default {
   data: () => {
     return {
-      name:"",
+      name: '',
       email: '',
       password: '',
       submitted: false,
       status: { Registering: false },
     };
   },
-  computed: {
-    ...mapState('account', ['status']),
-  },
+  computed: {},
   created() {
     // reset login status
     this.logout();
   },
   methods: {
-    ...mapActions( ),
     handleSubmit() {
       this.submitted = true;
       const { email, password, name } = this;
-      if (email && password&&  name) {
-        return  fetch(url+'/auth/register', {
-        method: 'POST', 
-        body:  JSON.stringify({name,
-            password,
-           email}),
-            headers:{'content-type': 'application/json; charset=UTF-8'}
-        
-      })
+      if (email && password && name) {
+        return fetch(url + '/auth/register', {
+          method: 'POST',
+          body: JSON.stringify({ name, password, email }),
+          headers: { 'content-type': 'application/json; charset=UTF-8' },
+        });
       }
     },
   },

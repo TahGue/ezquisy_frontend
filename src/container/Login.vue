@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
 import { url } from '../config/config';
 import axios from 'axios';
 export default {
@@ -55,15 +54,12 @@ export default {
       status: { loggingIn: false },
     };
   },
-  computed: {
-    ...mapState('account', ['status']),
-  },
+  computed: {},
   created() {
     // reset login status
     this.logout();
   },
   methods: {
-    ...mapActions('account', ['login', 'logout']),
     handleSubmit() {
       this.submitted = true;
       const { email, password } = this;
@@ -76,8 +72,8 @@ export default {
           .then((response) => {
             if (response?.data && response?.data?.token) {
               localStorage.setItem('token', response.data.token);
-            
-            window.location.href="/about";
+
+              window.location.href = '/about';
             }
           });
       }
