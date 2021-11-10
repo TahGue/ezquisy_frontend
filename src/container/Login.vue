@@ -73,7 +73,7 @@ export default {
             if (response?.data && response?.data?.token) {
               localStorage.setItem('token', response.data.token);
 
-              window.location.href = '/about';
+              window.location.href = '/';
             }
           });
       }

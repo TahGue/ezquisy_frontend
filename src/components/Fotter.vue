@@ -1,28 +1,19 @@
 <template>
   <div id="app">
-     <Header></Header>
-   <router-view/>
-   <Fotter></Fotter>
+     <div class="fotter">
+
+   <h2> HelloWorld </h2>
+    </div>
   </div>
   
 </template>
-
 <script>
-import Header from './components/Header.vue';
-import Fotter from './components/Fotter.vue';
 export default {
-  data: () => {
-    return {
-      
-    };
-  },
-  components: {
-   Header,
-   Fotter,
-  },
+  name: 'Fotter',
+  
 }
-</script>
 
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -31,4 +22,16 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
+.fotter {
+display: flex;
+flex-direction: row;
+background-color:#125083 ;
+justify-content: space-between;
+align-items: center;
+}
+
+
+
+
 </style>

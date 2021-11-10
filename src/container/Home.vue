@@ -1,7 +1,16 @@
 <template>
   <div>
-    <h1>{{ user.email }}</h1>
-    <h1>{{ user.name }}</h1>
+
+<!--Image Section-->
+<section class="hero">
+<div class="hero-overlay">
+<div class="hero-content">
+<h1>EzQuizy</h1>
+<h3>Test your smarts with these fun quizzes </h3>
+</div>
+</div>
+</section>
+
     <div class="CategoryHome">
       <div
         v-for="category in categories"
@@ -52,5 +61,33 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 2fr);
   padding: 0 2px;
+}
+.hero {
+width:100%;
+height: calc(100vh - 71px);
+background-image: url('../assets/kids.jpg');
+background-size: cover;
+}
+.hero-overlay {
+
+    width: 100%;
+    height: 100%;
+    background-color:#20222188 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    text-align: center;
+    color : white;
+}
+
+.hero-content h3 {
+text-align: center;
+color :white;
+font-size: 2rem ;
+
 }
 </style>
