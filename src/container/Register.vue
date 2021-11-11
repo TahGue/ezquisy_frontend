@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Login</h2>
+    <h2>Register</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="name">NAME</label>
@@ -67,8 +67,7 @@ export default {
   },
   computed: {},
   created() {
-    // reset login status
-    this.logout();
+    
   },
   methods: {
     handleSubmit() {
