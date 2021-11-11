@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-     <Header></Header>
-   <router-view/>
-   <Fotter></Fotter>
+    <div>
+      <Header />
+    </div>
+    <router-view />
+    <Footer />
   </div>
-  
 </template>
 
 <script>
 import Header from './components/Header.vue';
-import Fotter from './components/Fotter.vue';
+import Footer from './components/Footer.vue';
 export default {
   data: () => {
-    return {
-      
-    };
+    return {};
   },
   components: {
-   Header,
-   Fotter,
+    Header,
+    Footer,
   },
-}
+};
 </script>
 
 <style>

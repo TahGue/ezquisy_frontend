@@ -1,24 +1,30 @@
 <template>
- <div class="profile">
-<img :src="image" alt="profile_image">
-<h3>{{name}}</h3>
+  <div class="profile">
+    <h3>Profile</h3>
+    <img
+      class="profile-image"
+      src="https://cdn1.vectorstock.com/i/1000x1000/36/15/businessman-character-avatar-isolated-vector-12613615.jpg"
+      alt="profile_image"
+    />
+    <h3 class="name">Mohammad Naim Almani</h3>
 
-
-
-
- </div>
+    <Button v-on:click="signout()" class="btn btn-danger">Sign out</Button>
+  </div>
 </template>
 
 <script>
-import AnswerItem from './AnswerItem.vue';
 export default {
   name: 'Profile',
   props: {
-    image:"" ,
-    name:"" ,
+    image: String,
+    name: String,
   },
-  components: {
-  
+  components: {},
+  methods: {
+    signout() {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    },
   },
 };
 </script>
@@ -28,5 +34,16 @@ export default {
 .answer-container {
   display: block;
   padding: 0;
+}
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.name {
+  font-size: 1em;
+  font-weight: bold;
+  color: #3f51b5;
+  margin-top: 10px;
 }
 </style>

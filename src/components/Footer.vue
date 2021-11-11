@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-     <div class="fotter">
-
-   <h2> HelloWorld </h2>
+    <div class="fotter">
+      <h2>HelloWorld</h2>
     </div>
   </div>
-  
 </template>
 <script>
 export default {
-  name: 'Fotter',
-  
-}
-
+  name: 'Footer',
+};
 </script>
 <style>
 #app {
@@ -24,14 +20,10 @@ export default {
 }
 
 .fotter {
-display: flex;
-flex-direction: row;
-background-color:#125083 ;
-justify-content: space-between;
-align-items: center;
+  display: flex;
+  flex-direction: row;
+  background-color: #125083;
+  justify-content: space-between;
+  align-items: center;
 }
-
-
-
-
 </style>
