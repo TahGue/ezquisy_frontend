@@ -56,8 +56,7 @@ export default {
   },
   computed: {},
   created() {
-    // reset login status
-    this.logout();
+   
   },
   methods: {
     handleSubmit() {

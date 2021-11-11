@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div v-if="isAuth===true">
       <Header />
     </div>
     <router-view />
@@ -13,7 +13,19 @@ import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
 export default {
   data: () => {
-    return {};
+
+
+    return {
+  isAuth:false,
+    };
+  },
+   created() {
+
+  const token =localStorage.getItem("token");
+   if(token&&token!=""){
+     this.isAuth=true;
+    
+   }
   },
   components: {
     Header,

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="header">
+    <div class="header" v-if="isAuth===true">
       <div class="logo-container">
         <img src="../assets/logoe.jpg" class="logo" />
       </div>
@@ -11,7 +11,7 @@
           <li><Button v-on:click="displayProfile()">Profile</Button></li>
         </ul>
         <div class="profileContainer" v-if="isProfileDisplay === true">
-          <Profile />
+          <Profile :name="user.name"  :image="user.image" />
         </div>
       </nav>
     </div>
@@ -19,15 +19,26 @@
 </template>
 <script>
 import Profile from './Profile.vue';
+import User from './../api/User';
 export default {
   name: 'Header',
   data: () => {
     return {
       isProfileDisplay: false,
+      user:{},
+      isAuth:false 
     };
   },
   components: {
     Profile,
+  },
+  created() {
+    var self = this;
+    return User.getCurrentUser().then(function (dt) {
+      self.user = dt[0];
+      self.isAuth=true;
+
+    });
   },
   methods: {
     displayProfile() {

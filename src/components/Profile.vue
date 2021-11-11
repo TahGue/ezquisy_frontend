@@ -3,10 +3,10 @@
     <h3>Profile</h3>
     <img
       class="profile-image"
-      src="https://cdn1.vectorstock.com/i/1000x1000/36/15/businessman-character-avatar-isolated-vector-12613615.jpg"
+      :src="image"
       alt="profile_image"
     />
-    <h3 class="name">Mohammad Naim Almani</h3>
+    <h3 class="name">{{name}}</h3>
 
     <Button v-on:click="signout()" class="btn btn-danger">Sign out</Button>
   </div>

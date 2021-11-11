@@ -37,6 +37,7 @@ const routes = [
     name: 'Register',
     component: Register,
   },
+
 ];
 
 const router = new VueRouter({
@@ -45,4 +46,13 @@ const router = new VueRouter({
   routes,
 });
 
-export default router;
+const isAuthenticated = localStorage.getItem("token");
+
+// GOOD
+router.beforeEach((to, from, next) => {if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
+
+else next()})
+
+
+
+  export default router ;
