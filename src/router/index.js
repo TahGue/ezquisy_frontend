@@ -4,7 +4,7 @@ import Home from '../container/Home.vue';
 import Category from '../container/Category.vue';
 import Login from '../container/Login.vue';
 import Register from '../container/Register.vue';
-
+import Admin from '../container/Admin.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -37,6 +37,11 @@ const routes = [
     name: 'Register',
     component: Register,
   },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin,
+  }
 
 ];
 
