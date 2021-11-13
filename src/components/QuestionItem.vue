@@ -10,6 +10,8 @@
           v-for="answer in question.answers"
           :key="answer.id"
           :answer="answer"
+          @onSelectAnswer="onSelectAnswer(answer)"
+          :selectedAnswer="selectedAnswer"
         />
       </ul>
     </div>
@@ -20,12 +22,21 @@
 import AnswerItem from './AnswerItem.vue';
 export default {
   name: 'QuestionItem',
+  data: () => {
+    return {
+      selectedAnswer: {},
+    };
+  },
   props: {
     question: {},
-    selectedAnswer: {},
   },
   components: {
     AnswerItem,
+  },
+  methods: {
+    onSelectAnswer(answer) {
+      this.selectedAnswer = answer;
+    },
   },
 };
 </script>

@@ -19,15 +19,7 @@
     </b-progress>
     <div class="question-container">
       <div class="question-section">
-        <QuestionItem
-          :question="selectedQuestion"
-          :selectedAnswer="selectedAnswer"
-          @onSelectAnswer="
-            {
-              onSelectAnswer;
-            }
-          "
-        />
+        <QuestionItem :question="selectedQuestion" />
         <div class="btns-container">
           <button
             v-if="
@@ -68,7 +60,6 @@ export default {
       user: {},
       questions: [],
       selectedQuestion: {},
-      selectedAnswer: {},
     };
   },
   components: {
@@ -90,9 +81,6 @@ export default {
     goPrevious() {
       const currentIndex = this.questions.indexOf(this.selectedQuestion);
       this.selectedQuestion = this.questions[currentIndex - 1];
-    },
-    onSelectAnswer(answer) {
-      this.selectedAnswer = answer;
     },
   },
 };
