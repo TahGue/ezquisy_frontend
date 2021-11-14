@@ -11,6 +11,19 @@ class Question {
       })
       .then((res) => res.data);
   }
+
+  static async deleteByid(id) {
+    return axiosInstance
+      .delete('/question'+id, {
+        
+      })
+      .then((res) => res.data);
+  }
+
+  
 }
+
+
+
 
 export default Question;
