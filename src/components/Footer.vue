@@ -8,25 +8,24 @@
         <ul class="nav-bar">
           <li><a href="http://localhost:8080">Home</a></li>
           <li><a href="http://localhost:8080/aboutus">AboutUs</a></li>
-          <div>{{ShareNetwork}}</div>
+          
          </ul>
               </nav>
     </div>
   </div>
 </template>
 <script>
-import ShareNetwork from './ShareNetwork.vue';
+
 
 export default {
-  components: { ShareNetwork },
+  
   name: 'footer',
   data: () => {
     return {
       
     };
   },
-  
-   
+ 
   
 };
 </script>
