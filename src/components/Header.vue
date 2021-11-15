@@ -11,7 +11,7 @@
           <li><Button v-on:click="displayProfile()">Profile</Button></li>
         </ul>
         <div class="profileContainer" v-if="isProfileDisplay === true">
-          <Profile :name="user.name"  :image="user.image" />
+          <Profile :id="user.id" :name="user.name"  :image="user.image" />
         </div>
       </nav>
     </div>
