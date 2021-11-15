@@ -59,7 +59,6 @@
         >
           is correct: <b> {{ selectedItem.is_correct }}</b>
         </b-form-checkbox>
-       
       </b-form>
     </b-modal>
 
@@ -77,7 +76,7 @@
             required
           ></b-form-input>
         </b-form-group>
-      
+
         <b-form-checkbox
           v-model="selectedItem.is_active"
           name="check-button"
@@ -85,7 +84,7 @@
         >
           is active: <b> {{ selectedItem.is_active }}</b>
         </b-form-checkbox>
-        <br>
+        <br />
         <b-form-checkbox
           v-model="selectedItem.is_correct"
           name="check-button"
@@ -110,13 +109,11 @@ export default {
       answers: [],
       form: {},
       selectedItem: {},
-      questionId:Number,
+      questionId: Number,
     };
   },
   computed: {},
   created() {
-    console.log('this.$route.params.id');
-   this.questionId =  this.$route.params.id;
     var self = this;
     return Answer.getByQuestion(this.$route.params.id).then(function (dt) {
       self.answers = dt;
@@ -152,10 +149,10 @@ export default {
     },
 
     onEdit() {
-      this.selectedItem.question_id=this.questionId;
+      this.selectedItem.question_id = this.$route.params.id;
       var self = this;
       return Answer.update(this.selectedItem).then(() => {
-        Answer.getByQuestion(this.$route.params.id).then((dt) => {
+        return Answer.getByQuestion(self.$route.params.id).then((dt) => {
           self.answers = dt.answers;
         });
       });
@@ -171,12 +168,13 @@ export default {
     },
 
     onAdd() {
-
-      this.selectedItem.question_id=this.questionId;
+      this.selectedItem.question_id = this.$route.params.id;
       var self = this;
       return Answer.insert(this.selectedItem).then(() => {
-        Answer.getByQuestion(this.$route.params.id).then((dt) => {
-          self.answers = dt.answers;
+        console.log('self.$route.params.id');
+        console.log(self.$route.params.id);
+        return Answer.getByQuestion(self.$route.params.id).then((dt) => {
+          self.answers = dt;
         });
       });
     },

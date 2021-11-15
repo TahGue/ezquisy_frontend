@@ -3,7 +3,7 @@
     v-if="
       selectedAnswer !== null &&
       selectedAnswer.id == answer.id &&
-      selectedAnswer.is_correct == 'true'
+      (selectedAnswer.is_correct === 1 || selectedAnswer.is_correct === true)
     "
     class="correct-answer"
   >
@@ -14,7 +14,8 @@
     v-else-if="
       selectedAnswer !== null &&
       selectedAnswer.id == answer.id &&
-      selectedAnswer.is_correct == 'false'
+      selectedAnswer.is_correct !== 1 &&
+      selectedAnswer.is_correct !== true
     "
     class="wrong-answer"
   >

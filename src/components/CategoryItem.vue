@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'category', params: { id: id } }">
+  <router-link :to="`/category/${id}`">
     <div class="CategroyItem">
       <div class="category-card">
         <h2>{{ name }}</h2>

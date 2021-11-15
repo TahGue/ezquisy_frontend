@@ -16,7 +16,7 @@ const routes = [
     component: Home,
   },
   {
-    path: '/category',
+    path: '/category/:id',
     name: 'category',
     component: Category,
   },
@@ -46,7 +46,7 @@ const routes = [
   },
 
   {
-    path: '/admin/answers',
+    path: '/admin/answers/:id',
     name: 'AdminAnswers',
     component: AdminAnswers,
   },

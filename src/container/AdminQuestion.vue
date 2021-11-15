@@ -35,9 +35,7 @@
             </button>
           </td>
           <td>
-            <router-link
-              :to="{ name: 'AdminAnswers', params: { id: question.id } }"
-            >
+            <router-link :to="`/admin/answers/${question.id}`">
               Answers
             </router-link>
           </td>
