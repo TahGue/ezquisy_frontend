@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="header" v-if="isAuth===true">
+    <div class="header" v-if="isAuth === true">
       <div class="logo-container">
         <img src="../assets/logoe.jpg" class="logo" />
       </div>
@@ -8,10 +8,20 @@
         <ul class="nav-bar">
           <li><a href="http://localhost:8080">Home</a></li>
           <li><a href="http://localhost:8080/aboutus">AboutUs</a></li>
-          <li><Button v-on:click="displayProfile()">Profile</Button></li>
+          <li>
+            <Button class="profileBtn" v-on:click="displayProfile()"
+              >Profile</Button
+            >
+          </li>
         </ul>
         <div class="profileContainer" v-if="isProfileDisplay === true">
-          <Profile :id="user.id" :name="user.name"  :image="user.image" />
+          <Profile
+            :id="user.id"
+            :name="user.name"
+            :image="user.image"
+            :selectedImage="selectedImage"
+            @onSaveImage="onSaveImage"
+          />
         </div>
       </nav>
     </div>
@@ -26,8 +36,9 @@ export default {
   data: () => {
     return {
       isProfileDisplay: false,
-      user:{},
-      isAuth:false 
+      user: {},
+      isAuth: false,
+      selectedImage: '',
     };
   },
   components: {
@@ -37,13 +48,19 @@ export default {
     var self = this;
     return User.getCurrentUser().then(function (dt) {
       self.user = dt[0];
-      self.isAuth=true;
-
+      self.isAuth = true;
     });
   },
   methods: {
     displayProfile() {
       this.isProfileDisplay = !this.isProfileDisplay;
+    },
+
+    onSaveImage(image) {
+      var self = this;
+      return User.update({ id: this.user.id, image: image }).then(() => {
+        self.user.image = image;
+      });
     },
   },
 };
@@ -105,6 +122,14 @@ export default {
   padding: 20px;
   border-radius: 10px;
   border-top-right-radius: 0;
+}
+.profileBtn {
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.profileBtn:hover {
+  color: #125083;
 }
 
 nav li:hover a {
