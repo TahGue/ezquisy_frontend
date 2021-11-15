@@ -9,7 +9,7 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">text</th>
+          <th scope="col">Answer</th>
           <th scope="col">Correct</th>
           <th scope="col">Active</th>
           <th scope="col">delete</th>
@@ -52,10 +52,6 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-checkbox name="check-button" switch>
-          Switch Checkbox <b>(Checked: {{ true }})</b>
-        </b-form-checkbox>
-
         <b-form-checkbox
           v-model="selectedItem.is_correct"
           name="check-button"
@@ -63,31 +59,7 @@
         >
           is correct: <b> {{ selectedItem.is_correct }}</b>
         </b-form-checkbox>
-        <b-form-group
-          label="Category:"
-          label-for="input-1"
-          description="Add to Category."
-        >
-          <b-form-select
-            v-model="selectedItem.category_id"
-            value-field="id"
-            text-field="name"
-            :options="categories"
-          ></b-form-select>
-        </b-form-group>
-
-        <b-form-group
-          label="Answer Type:"
-          label-for="input-1"
-          description="Add  Answer Type."
-        >
-          <b-form-select
-            v-model="selectedItem.question_type_id"
-            value-field="id"
-            text-field="name"
-            :options="questionTypes"
-          ></b-form-select>
-        </b-form-group>
+       
       </b-form>
     </b-modal>
 
@@ -99,49 +71,28 @@
           description="Add new Answer."
         >
           <b-form-input
-            v-model="selectedItem.answer"
+            v-model="selectedItem.text"
             type="text"
             placeholder="Enter Answer"
             required
           ></b-form-input>
         </b-form-group>
-        <b-form-group
-          label="Point:"
-          label-for="input-1"
-          description="Add Point."
+      
+        <b-form-checkbox
+          v-model="selectedItem.is_active"
+          name="check-button"
+          button
         >
-          <b-form-input
-            v-model="selectedItem.point"
-            type="number"
-            placeholder="Enter point"
-            required
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label="Category:"
-          label-for="input-1"
-          description="Add to Category."
+          is active: <b> {{ selectedItem.is_active }}</b>
+        </b-form-checkbox>
+        <br>
+        <b-form-checkbox
+          v-model="selectedItem.is_correct"
+          name="check-button"
+          button
         >
-          <b-form-select
-            v-model="selectedItem.category_id"
-            value-field="id"
-            text-field="name"
-            :options="categories"
-          ></b-form-select>
-        </b-form-group>
-
-        <b-form-group
-          label="Answer Type:"
-          label-for="input-1"
-          description="Add  Answer Type."
-        >
-          <b-form-select
-            v-model="selectedItem.question_type_id"
-            value-field="id"
-            text-field="name"
-            :options="questionTypes"
-          ></b-form-select>
-        </b-form-group>
+          is correct: <b> {{ selectedItem.is_correct }}</b>
+        </b-form-checkbox>
       </b-form>
     </b-modal>
 
@@ -159,12 +110,13 @@ export default {
       answers: [],
       form: {},
       selectedItem: {},
+      questionId:Number,
     };
   },
   computed: {},
   created() {
     console.log('this.$route.params.id');
-    console.log(this.$route.params.id);
+   this.questionId =  this.$route.params.id;
     var self = this;
     return Answer.getByQuestion(this.$route.params.id).then(function (dt) {
       self.answers = dt;
@@ -200,6 +152,7 @@ export default {
     },
 
     onEdit() {
+      this.selectedItem.question_id=this.questionId;
       var self = this;
       return Answer.update(this.selectedItem).then(() => {
         Answer.getByQuestion(this.$route.params.id).then((dt) => {
@@ -208,7 +161,7 @@ export default {
       });
     },
 
-    // show edit
+    // show add
     showAdd() {
       this.selectedItem = {};
       this.$refs['add-model'].show();
@@ -218,6 +171,8 @@ export default {
     },
 
     onAdd() {
+
+      this.selectedItem.question_id=this.questionId;
       var self = this;
       return Answer.insert(this.selectedItem).then(() => {
         Answer.getByQuestion(this.$route.params.id).then((dt) => {
