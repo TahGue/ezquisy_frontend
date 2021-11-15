@@ -20,6 +20,7 @@
 <script>
 import Profile from './Profile.vue';
 import User from './../api/User';
+
 export default {
   name: 'Header',
   data: () => {

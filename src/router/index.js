@@ -4,7 +4,9 @@ import Home from '../container/Home.vue';
 import Category from '../container/Category.vue';
 import Login from '../container/Login.vue';
 import Register from '../container/Register.vue';
-import Admin from '../container/Admin.vue';
+import AdminQuestion from '../container/AdminQuestion.vue';
+import AdminAnswers from '../container/AdminAnswers.vue';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -38,11 +40,16 @@ const routes = [
     component: Register,
   },
   {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin,
-  }
+    path: '/admin/question',
+    name: 'AdminQuestion',
+    component: AdminQuestion,
+  },
 
+  {
+    path: '/admin/answers',
+    name: 'AdminAnswers',
+    component: AdminAnswers,
+  },
 ];
 
 const router = new VueRouter({
@@ -51,13 +58,13 @@ const router = new VueRouter({
   routes,
 });
 
-const isAuthenticated = localStorage.getItem("token");
+const isAuthenticated = localStorage.getItem('token');
 
 // GOOD
-router.beforeEach((to, from, next) => {if ((to.name !== 'Login'&& to.name !== "Register") && !isAuthenticated) next({ name: 'Login'  })
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && to.name !== 'Register' && !isAuthenticated)
+    next({ name: 'Login' });
+  else next();
+});
 
-else next()})
-
-
-
-  export default router ;
+export default router;
