@@ -24,6 +24,11 @@
     </div>
 
     <h3 class="name">{{ name }}</h3>
+    <div class="progressContainer">
+      <b-progress :value="50" :max="100" show-progress height="1rem" border="0">
+        <b-progress-bar :value="50">50%</b-progress-bar>
+      </b-progress>
+    </div>
 
     <Button v-on:click="signout()" class="btn btn-danger">Sign out</Button>
   </div>
@@ -107,5 +112,9 @@ export default {
 }
 .selectItem {
   cursor: pointer;
+}
+.progressContainer {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>

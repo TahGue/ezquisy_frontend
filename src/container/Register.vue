@@ -66,9 +66,7 @@ export default {
     };
   },
   computed: {},
-  created() {
-    
-  },
+  created() {},
   methods: {
     handleSubmit() {
       this.submitted = true;
@@ -78,6 +76,8 @@ export default {
           method: 'POST',
           body: JSON.stringify({ name, password, email }),
           headers: { 'content-type': 'application/json; charset=UTF-8' },
+        }).then(() => {
+          window.location.href = '/login';
         });
       }
     },
