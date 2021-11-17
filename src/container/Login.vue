@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="formContainer">
     <h2>Login</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
@@ -55,9 +55,7 @@ export default {
     };
   },
   computed: {},
-  created() {
-   
-  },
+  created() {},
   methods: {
     handleSubmit() {
       this.submitted = true;
@@ -80,3 +78,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.formContainer {
+  width: 50%;
+  margin: 0 auto;
+}
+</style>
