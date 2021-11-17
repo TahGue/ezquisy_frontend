@@ -10,7 +10,7 @@
           v-for="answer in question.answers"
           :key="answer.id"
           :answer="answer"
-          @onSelectAnswer="onSelectAnswer(answer)"
+          @onSelectAnswer="onSave(answer)"
           :selectedAnswer="selectedAnswer"
         />
       </ul>
@@ -23,19 +23,19 @@ import AnswerItem from './AnswerItem.vue';
 export default {
   name: 'QuestionItem',
   data: () => {
-    return {
-      selectedAnswer: {},
-    };
+    return {};
   },
   props: {
     question: {},
+    selectedAnswer: null,
+    onSelectAnswer: { type: Function },
   },
   components: {
     AnswerItem,
   },
   methods: {
-    onSelectAnswer(answer) {
-      this.selectedAnswer = answer;
+    onSave(answer) {
+      this.$emit('onSelectAnswer', answer);
     },
   },
 };

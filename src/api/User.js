@@ -7,6 +7,12 @@ class User {
   static async update(data) {
     return axiosInstance.put('/user', data).then((res) => res.data);
   }
+
+  static async saveAnswer(answerId) {
+    return axiosInstance
+      .post('/answeruser', { answer_id: answerId })
+      .then((res) => res.data);
+  }
 }
 
 export default User;

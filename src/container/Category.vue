@@ -19,7 +19,11 @@
     </b-progress>
     <div class="question-container">
       <div class="question-section">
-        <QuestionItem :question="selectedQuestion" />
+        <QuestionItem
+          :question="selectedQuestion"
+          :selectedAnswer="selectedAnswer"
+          @onSelectAnswer="onSelectAnswer"
+        />
         <div class="btns-container">
           <button
             v-if="
@@ -51,6 +55,7 @@
 </template>
 
 <script>
+import User from '../api/User';
 import Question from './../api/Question';
 import QuestionItem from './../components/QuestionItem';
 
@@ -60,6 +65,7 @@ export default {
       user: {},
       questions: [],
       selectedQuestion: {},
+      selectedAnswer: null,
     };
   },
   components: {
@@ -77,10 +83,17 @@ export default {
     goNext() {
       const currentIndex = this.questions.indexOf(this.selectedQuestion);
       this.selectedQuestion = this.questions[currentIndex + 1];
+      this.selectedAnswer = null;
     },
     goPrevious() {
       const currentIndex = this.questions.indexOf(this.selectedQuestion);
       this.selectedQuestion = this.questions[currentIndex - 1];
+      this.selectedAnswer = null;
+    },
+
+    onSelectAnswer(answer) {
+      this.selectedAnswer = answer;
+      return User.saveAnswer(answer.id);
     },
   },
 };
