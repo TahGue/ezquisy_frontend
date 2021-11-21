@@ -19,6 +19,8 @@
             :id="user.id"
             :name="user.name"
             :image="user.image"
+            :userPoints="user.userPoints"
+            :allPoints="user.allPoints"
             :selectedImage="selectedImage"
             @onSaveImage="onSaveImage"
           />
@@ -47,7 +49,7 @@ export default {
   created() {
     var self = this;
     return User.getCurrentUser().then(function (dt) {
-      self.user = dt[0];
+      self.user = dt;
       self.isAuth = true;
     });
   },

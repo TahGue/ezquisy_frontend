@@ -20,6 +20,8 @@
         <CategoryItem
           :name="category.name"
           :image="category.image"
+          :points="category.userPoints"
+          :allPoints="category.points"
           :id="category.id"
         />
       </div>

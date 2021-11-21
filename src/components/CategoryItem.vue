@@ -2,12 +2,13 @@
   <router-link class="link" :to="`/category/${id}`">
     <div style="position: relative">
       <vue-ellipse-progress
-        :progress="50"
+        :progress="(points/allPoints)*100"
         animation="reverse 700 400"
         :angle="-90"
       >
         <div class="CategroyItem">
           <div class="category-card" :style="`background-image:url(${image})`">
+            <h1 class="categoryName">{{ ((points/allPoints)*100).toFixed(1) }}%</h1>
             <h2 class="categoryName">{{ name }}</h2>
           </div>
         </div>
@@ -23,6 +24,8 @@ export default {
     id: Number,
     name: String,
     image: String,
+    points:Number,
+    allPoints:Number
   },
 };
 </script>
@@ -47,6 +50,7 @@ export default {
   background-size: cover;
   background-position: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;

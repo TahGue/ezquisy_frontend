@@ -25,8 +25,8 @@
 
     <h3 class="name">{{ name }}</h3>
     <div class="progressContainer">
-      <b-progress :value="50" :max="100" show-progress height="1rem" border="0">
-        <b-progress-bar :value="50">50%</b-progress-bar>
+      <b-progress :value="userPoints/allPoints*100" :max="100" show-progress height="1rem" border="0">
+        <b-progress-bar :value="50">{{(userPoints/allPoints*100).toFixed(1)}}%</b-progress-bar>
       </b-progress>
     </div>
 
@@ -42,6 +42,8 @@ export default {
     name: String,
     id: Number,
     selectedImage: String,
+    userPoints:Number,
+    allPoints:Number,
     onSaveImage: { type: Function },
   },
   data: () => {
