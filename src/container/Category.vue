@@ -1,5 +1,6 @@
 <template>
   <div class="page-container">
+   <div class="page-content">
     <b-progress
       :value="questions.indexOf(selectedQuestion) + 1"
       :max="questions.length"
@@ -36,7 +37,7 @@
           >
             Next
           </button>
-          <button
+          <!--button
             v-if="
               selectedQuestion &&
               questions.length > 0 &&
@@ -46,12 +47,18 @@
             v-on:click="goPrevious()"
           >
             Previous
-          </button>
-          <button class="next-btn">See Result</button>
+          </button-->
+          <router-link to="/">
+          <button class="next-btn">Return to Home</button>
+          </router-link>
         </div>
       </div>
     </div>
+    </div>
+    <audio ref="errorSound" src="../assets/errorSound.mp3"></audio>
+    <audio ref="successSound" src="../assets/SuccessSound.mp3"></audio>
   </div>
+
 </template>
 
 <script>
@@ -92,17 +99,27 @@ export default {
     },
 
     onSelectAnswer(answer) {
+      console.log(answer);
       this.selectedAnswer = answer;
+      if(answer.is_correct===1|| answer.is_correct===true|| answer.is_correct==='true'){
+        this.$refs.successSound.play();
+
+      }else{
+        this.$refs.errorSound.play();
+
+      }
       return User.saveAnswer(answer.id);
     },
   },
 };
 </script>
 
-<style scoped>
+<style>
 .page-container {
   width: 100%;
-  height: calc(100vh - 70px);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,18 +127,22 @@ export default {
   background: url('../assets/kids.jpg');
   background-size: cover;
 }
+.page-content{
+   width: 50%;
+}
 .question-container {
-  width: 50%;
+  width: 100%;
   height: auto;
   min-width: 250px;
 }
 .progress {
-  width: 50%;
+  width: 100%;
 }
 .question-section {
   padding: 10px;
   background: #f0f0f0;
   box-shadow: 1px 1px 20px 7px #33333350;
+  min-width: 200px;
 }
 .next-btn {
   padding: 10px 15px;
@@ -141,4 +162,25 @@ export default {
   background: #fff;
   color: #1e88e5;
 }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+.page-content{
+   width: 100%;
+}
+
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
 </style>

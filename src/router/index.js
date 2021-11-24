@@ -59,12 +59,20 @@ const router = new VueRouter({
 });
 
 const isAuthenticated = localStorage.getItem('token');
-
+/*const isAdmin =
+  localStorage.getItem('user') && localStorage.getItem('user') !== null
+    ? JSON.stringify(localStorage.getItem('user')).role === 'admin'
+      ? true
+      : false
+    : false;
+*/
 // GOOD
 router.beforeEach((to, from, next) => {
   if (to.name !== 'Login' && to.name !== 'Register' && !isAuthenticated)
     next({ name: 'Login' });
-  else next();
+  else {
+    next();
+  }
 });
 
 export default router;

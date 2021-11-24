@@ -7,7 +7,7 @@
 
     <div
       class="profileListImages"
-      :style="displayImageList === true ? 'opacity:1' : 'opacity:0'"
+      :style="displayImageList === true ? 'display:flex' : 'display:none'"
     >
       <div
         v-for="profileImage in images"
@@ -26,7 +26,7 @@
     <h3 class="name">{{ name }}</h3>
     <div class="progressContainer">
       <b-progress :value="userPoints/allPoints*100" :max="100" show-progress height="1rem" border="0">
-        <b-progress-bar :value="50">{{(userPoints/allPoints*100).toFixed(1)}}%</b-progress-bar>
+        <b-progress-bar :value="userPoints/allPoints*100">{{(userPoints/allPoints*100).toFixed(1)}}%</b-progress-bar>
       </b-progress>
     </div>
 
@@ -111,6 +111,7 @@ export default {
   top: 57px;
   right: 100%;
   transition: all 0.5s ease-in-out;
+  z-index: 999;
 }
 .selectItem {
   cursor: pointer;

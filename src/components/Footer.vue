@@ -4,14 +4,10 @@
       <div class="logo-container">
         <img src="../assets/logoe.jpg" class="logo" />
       </div>
-      <nav>
-        <ul class="nav-bar">
-          <li><a href="http://localhost:8080">Home</a></li>
-          <li><a href="http://localhost:8080/aboutus">AboutUs</a></li>
-          
-         </ul>
-              </nav>
-    </div>
+      <div class='copyright'>
+        @copyright 2021
+      </div>
+  </div>
   </div>
 </template>
 <script>
@@ -29,22 +25,24 @@ export default {
   
 };
 </script>
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  width:100vw;
+  overflow:hidden;
+  color: #333;
 }
 
 .footer {
   display: flex;
   flex-direction: row;
-  background-color: #125083;
-  justify-content: space-between;
+  background-color: #333;
+  justify-content: space-around;
   align-items: center;
-  padding: 0 10px;
+  padding: 40px 10px;
 }
 
 .logo {
@@ -77,7 +75,10 @@ export default {
   color: #ffffff;
   transition: all 0.5s ease-in-out;
 }
-
+.copyright{
+  color: #fff;
+  padding: 10px;
+}
 
 nav li:hover a {
   color: #125083;
